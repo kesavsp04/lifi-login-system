@@ -1,162 +1,194 @@
-LiFi Based Login System
-🌟 Project Overview
-This project demonstrates a novel approach to secure login systems by leveraging Light Fidelity (LiFi) technology. We've developed a prototype featuring a 3-locker/safe system where each lock can be opened and closed using distinct lock and unlock codes transmitted via modulated light from a smartphone.
+Got it ✅ — I’ll give you the **full, final README.md text** with all Markdown correctly placed, so you can copy-paste it **directly** into GitHub.
+This will render perfectly without formatting mistakes.
 
-The core of the system relies on a custom-built Android application, "Velicham," which modulates the device's flashlight to encode 4-digit login credentials. This modulated light signal is then received by an LDR (Light Dependent Resistor) module, which converts the optical data into electrical signals. These signals are processed by a Clone Arduino Uno R3, which interprets the codes and controls one of three SG90 servo motors acting as the physical locks.
+---
 
-A 16x2 LCD display provides real-time feedback on the system's status, guiding the user through the login process and indicating states such as "Waiting for input," "Lock 3 Unlocked," "Wrong Code," "Please Wait," "Timeout," and a "Locked!" state if five incorrect codes are entered.
+# 🔐 LiFi Based Login System
 
-✨ Features
-LiFi Communication: Utilizes Pulse Width Modulation (PWM) of a smartphone flashlight for secure, short-range data transmission.
+## 🌟 Project Overview
 
-Three-Tier Security: Implements a three-locker system, each with unique lock/unlock codes.
+This project demonstrates a novel approach to secure login systems by leveraging **Light Fidelity (LiFi)** technology.
+We developed a **3-locker/safe prototype** where each lock can be controlled using distinct lock/unlock codes transmitted via modulated light from a smartphone.
 
-Custom Android App ("Velicham"): A dedicated application developed with Android Studio for precise light modulation and code transmission.
+The core of the system is powered by:
 
-Real-time User Feedback: An integrated 16x2 LCD connected via an I2C module provides clear status messages during operation.
+* A custom Android app **Velicham**, which modulates the flashlight to encode 4-digit login credentials.
+* An **LDR module** that receives the signal and passes it to a **Clone Arduino Uno R3**.
+* **SG90 Servo motors** acting as locks, controlled by the Arduino.
+* A **16x2 LCD with I2C** for real-time system feedback.
 
-Robust Error Handling: Features comprehensive error detection including "Wrong Code," "Timeout," and a "Locked!" state after five consecutive failed attempts.
+---
 
-Arduino Control: Logic handled by a cost-effective Clone Arduino Uno R3 platform for accessibility and ease of development.
+## ✨ Features
 
-💡 How It Works
-Here are images of the physical prototype and the LCD display in action:
+* **LiFi Communication**: Secure, short-range data transmission using PWM flashlight modulation.
+* **Three-Tier Security**: 3 independent lockers, each with unique codes.
+* **Custom Android App (Velicham)**: Built with Android Studio & Kotlin for precision light modulation.
+* **Real-time User Feedback**: LCD shows system status ("Waiting", "Unlocked", "Wrong Code", etc.).
+* **Robust Error Handling**: Wrong code, timeout, and lockout mechanisms.
+* **Arduino Based**: Powered by a Clone Arduino Uno R3 for cost-effectiveness and accessibility.
 
-The system operates on a simple, yet effective principle:
+---
 
-Code Transmission (Velicham App): The user enters a 4-digit code into the Velicham Android application. Each digit is converted into a specific flashlight ON duration based on a rule (e.g., 0 = 50ms, 1 = 100ms, ..., 9 = 500ms). The app blinks the flashlight in sequence, with a 50ms OFF gap between each digit.
+## 💡 How It Works
 
-Light Reception (LDR Module): An LDR module detects these precise flashlight pulses. The varying light intensity changes the LDR's resistance, which is then converted into a digital signal processed by the Arduino.
+1. **Code Transmission (Velicham App)**
 
-Data Processing (Arduino Uno R3): The Arduino continuously monitors the LDR's digital output, measuring the ON durations. It then maps these durations back to the corresponding digits, reconstructing the original 4-digit code.
+   * User enters a 4-digit code.
+   * Each digit → flashlight ON duration (0=50ms, 1=100ms, …, 9=500ms).
+   * 50ms OFF gap between digits.
 
-Lock Control (Servo Motors): Based on the decoded code, the Arduino verifies it against pre-defined authentication keys. If the code is correct, the corresponding SG90 servo motor rotates 180 degrees to an "unlocked" position. After a predefined time (e.g., 5 seconds), the servo returns to its locked position (0 degrees).
+2. **Light Reception (LDR Module)**
 
-Status Display (LCD): The 16x2 LCD connected to the Arduino provides immediate visual feedback, displaying messages like "Waiting for Input," "Access Granted - Safe Unlocked," "Access Denied - Invalid Code," "Timeout," and the "Locked! Wait Xs" message during temporary lockouts.
+   * Detects flashlight pulses.
+   * Converts light intensity into resistance → electrical signals.
 
-Security Measures: The system includes logic to increment a counter for wrong code entries. If 5 incorrect codes are entered consecutively, the system enters a temporary lockout state (e.g., 30 seconds) to prevent brute-force attacks.
+3. **Data Processing (Arduino Uno R3)**
 
-🛠️ Hardware Components
-Here's a list of the key components used in this project:
+   * Measures ON durations.
+   * Maps durations → digits.
+   * Reconstructs the 4-digit code.
 
-Smartphone: Any Android smartphone capable of controlling its flashlight programmatically.
+4. **Lock Control (Servo Motors)**
 
-LDR Module: Used to detect and convert modulated light signals.
+   * If code matches → corresponding SG90 servo rotates to unlock (180°).
+   * After 5s → auto return to locked position (0°).
 
-Pinout: VCC (3.3V), GND, DO (Data Output)
+5. **Status Display (LCD)**
 
-Clone Arduino Uno R3 (CH340): The central microcontroller.
+   * Messages:
 
-Pin usage: Digital I/O for LDR, PWM pins for Servos, I2C pins (A4, A5) for LCD.
+     * `Waiting for Input`
+     * `Safe X Unlocked`
+     * `Wrong Code`
+     * `Timeout`
+     * `Locked! Wait Xs`
 
-SG90 Servo Motors (x3): Act as the physical locking mechanisms.
+6. **Security Measures**
 
-Pinout: VCC (5V), GND, Signal (GPIO)
+   * Wrong attempts counter.
+   * 5 failed codes → system lockout for 30s.
 
-16x2 LCD Display: For real-time status updates.
+---
 
-I2C Module: Interfaces the LCD with the Arduino, reducing pin usage.
+## 🛠️ Hardware Components
 
-Pinout: VCC (5V), GND, SDA (Serial Data), SCL (Serial Clock)
+* **Smartphone** (Android, flashlight controllable)
+* **LDR Module** (VCC, GND, DO pins)
+* **Clone Arduino Uno R3 (CH340)**
+* **SG90 Servo Motors (x3)** (VCC, GND, Signal)
+* **16x2 LCD with I2C module** (VCC, GND, SDA, SCL)
+* **12V, 1A Power Adapter**
+* **Mini Breadboard + Jumper Wires**
+* **Forex Sheet (70cm x 70cm)** → prototype frame
+* **Tools**: Soldering iron, wire cutters, multimeter
 
-12V, 1A Power Adapter: Supplies stable power to the Arduino and components.
+---
 
-Mini-Breadboard: For prototyping circuit connections.
+## 💻 Software Components
 
-Jumper Wires: For electrical connections.
+### Velicham Android App
 
-Forex Sheet (70cm x 70cm): Used as the structural framework for the prototype.
+* Built in **Android Studio (Kotlin)**
+* Converts digits → flashlight pulses
+* Controls flashlight with precise ON/OFF durations
 
-Tools: Soldering Iron and Solder, Wire Cutters and Strippers, Multimeter.
+**Digit Encoding Rule**:
 
-💻 Software Components
-Velicham Android Application:
+```
+0 -> 50ms ON  
+1 -> 100ms ON  
+2 -> 150ms ON  
+3 -> 200ms ON  
+4 -> 250ms ON  
+5 -> 300ms ON  
+6 -> 350ms ON  
+7 -> 400ms ON  
+8 -> 450ms ON  
+9 -> 500ms ON  
+(50ms OFF gap between digits)
+```
 
-Developed using Android Studio and Kotlin.
+### Arduino Sketch (Firmware)
 
-Handles user input, converts digits to light pulse durations, and controls the flashlight.
+* Written in **C++ with Arduino IDE**
+* Handles:
 
-App UI:
-![Velicham App User Interface](images/App UI.jpg)
+  * LDR input decoding
+  * Servo motor control
+  * LCD updates
+  * Timeout + Lockout logic
 
-Light Encoding Rule:
+**Required Libraries**:
 
-0 -> 50ms ON
+* `LiquidCrystal_I2C`
+* `Servo`
 
-1 -> 100ms ON
+---
 
-2 -> 150ms ON
+## 🚀 Getting Started
 
-3 -> 200ms ON
+### Clone the Repository
 
-4 -> 250ms ON
-
-5 -> 300ms ON
-
-6 -> 350ms ON
-
-7 -> 400ms ON
-
-8 -> 450ms ON
-
-9 -> 500ms ON
-
-50ms OFF gap between each digit.
-
-Arduino Sketch (Firmware):
-
-Written in C++ using the Arduino IDE.
-
-Manages input from the LDR, decodes light signals based on duration, controls servo motors, and updates the LCD display.
-
-Implements timeout and lockout mechanisms for security.
-
-🚀 Getting Started
-To replicate and run this project:
-
-Clone the Repository:
-
+```bash
 git clone https://github.com/kesavsp04/lifi-login-system.git
+```
 
-Hardware Setup:
+### Hardware Setup
 
-Assemble the LDR module, three SG90 servo motors, and the 16x2 LCD (with I2C module) with the Arduino Uno R3 as shown in the provided circuit diagram. Ensure correct power connections from the 12V adapter.
+* Connect **LDR → Arduino digital pin**
+* Connect **3x SG90 Servos → PWM pins**
+* Connect **LCD (I2C) → SDA=A4, SCL=A5**
+* Power system with **12V adapter**
 
-Arduino IDE Setup:
+### Arduino IDE Setup
 
-Install the Arduino IDE.
+1. Install Arduino IDE
+2. Open sketch: `arduino-code/lifi-based-login.ino`
+3. Install required libraries (`LiquidCrystal_I2C`, `Servo`)
+4. Upload to Arduino Uno R3
 
-Open the Arduino sketch from the repository (you will find it as lifi-based-login.ino in the arduino-code/ folder).
+### Android App Setup
 
-Install necessary libraries: LiquidCrystal_I2C and Servo.
+* Install prebuilt APK: `android-app/Velicham-v1.0.apk`
+* Or open `android-app/Velicham/` in Android Studio → Build & Install
+* Grant **Camera permission** for flashlight control
 
-Upload the sketch to your Arduino Uno R3.
+### Testing
 
-Smartphone App Setup:
+1. Power up Arduino system.
+2. Open Velicham app → enter code → transmit via flashlight.
+3. Observe:
 
-The compiled Velicham APK can be found in the android-app/ folder (e.g., android-app/Velicham-v1.0.apk) for direct installation on an Android device.
+   * ✅ Correct code → Servo unlocks safe
+   * ❌ Wrong code → LCD shows "Wrong Code"
+   * ⏳ Timeout → LCD shows "Timeout"
+   * 🔒 5 wrong codes → Lockout for 30s
 
-To work with the source code, open the Android Studio project for the Velicham app from the repository (it's located in the android-app/Velicham/ folder).
+---
 
-Build and install the APK on your Android device. Ensure camera permission is granted for flashlight control.
+## 📸 Prototype & UI
 
-Testing:
+* **Velicham App UI**
+  ![App UI](images/App%20UI.jpg)
 
-Power up the Arduino system.
+* **LCD & Hardware Prototype**
+  *(Insert your prototype images here)*
 
-Use the Velicham app to transmit 4-digit codes towards the LDR module.
+---
 
-Observe the servo motor actions and LCD output for successful authentication, wrong codes, timeouts, and lockouts.
+## 🤝 Contributing
 
-🤝 Contributing
-We welcome contributions to enhance this project! If you have ideas for improvements, bug fixes, or new features, please feel free to:
+We welcome contributions! 🚀
 
-Fork this repository.
+1. Fork repo
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push branch (`git push origin feature/AmazingFeature`)
+5. Open Pull Request
 
-Create a new branch (git checkout -b feature/AmazingFeature).
+---
 
-Commit your changes (git commit -m 'Add some AmazingFeature').
+👉 That’s it — just copy **everything above** into your `README.md` file on GitHub.
 
-Push to the branch (git push origin feature/AmazingFeature).
-
-Open a Pull Request.
+Would you also like me to give you a **simple circuit diagram (block diagram)** you can include as an image in the README? That would make it look very professional.
