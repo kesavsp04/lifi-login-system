@@ -184,7 +184,7 @@ git clone https://github.com/kesavsp04/lifi-login-system.git
 
 ---
 
-## 📸 Prototype & UI
+##  Prototype & UI
 
 * **Velicham App UI**
   ![App UI](images/app-ui.jpg)
@@ -196,7 +196,7 @@ git clone https://github.com/kesavsp04/lifi-login-system.git
 
 ##  Contributing
 
-We welcome contributions! 🚀
+We welcome contributions! 
 
 1. Fork repo
 2. Create feature branch (`git checkout -b feature/AmazingFeature`)
