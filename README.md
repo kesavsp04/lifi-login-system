@@ -187,6 +187,7 @@ git clone https://github.com/kesavsp04/lifi-login-system.git
 ##  Prototype & UI
 
 * **Velicham App UI**
+
   ![App UI](images/app-ui.jpg)
 
 * **LCD & Hardware Prototype**
