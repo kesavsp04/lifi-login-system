@@ -1,6 +1,6 @@
-# 🔐 LiFi Based Login System
+#  LiFi Based Login System
 
-## 🌟 Project Overview
+##  Project Overview
 
 This project demonstrates a novel approach to secure login systems by leveraging **Light Fidelity (LiFi)** technology.
 We developed a **3-locker/safe prototype** where each lock can be controlled using distinct lock/unlock codes transmitted via modulated light from a smartphone.
@@ -14,7 +14,7 @@ The core of the system is powered by:
 
 ---
 
-## ✨ Features
+##  Features
 
 * **LiFi Communication**: Secure, short-range data transmission using PWM flashlight modulation.
 * **Three-Tier Security**: 3 independent lockers, each with unique codes.
@@ -26,7 +26,7 @@ The core of the system is powered by:
 
 ---
 
-## 💡 How It Works
+##  How It Works
 
 1. **Code Transmission (Velicham App)**
 
@@ -72,14 +72,14 @@ The core of the system is powered by:
    * Wrong attempts counter.
    * 5 failed codes → system lockout for 30s.
 
-## 📊 Block Diagram
+##  Block Diagram
 
 ![Block Diagram](images/block-diagram.jpg)
 
 
 ---
 
-## 🛠️ Hardware Components
+##  Hardware Components
 
 
 * **Smartphone** (Android, flashlight controllable)  
@@ -94,7 +94,7 @@ The core of the system is powered by:
 
 ---
 
-## 💻 Software Components
+##  Software Components
 
 ### Velicham Android App
 
@@ -140,7 +140,7 @@ The core of the system is powered by:
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Clone the Repository
 
@@ -177,10 +177,10 @@ git clone https://github.com/kesavsp04/lifi-login-system.git
 2. Open Velicham app → enter code → transmit via flashlight.
 3. Observe:
 
-   * ✅ Correct code → Servo unlocks safe
-   * ❌ Wrong code → LCD shows "Wrong Code"
-   * ⏳ Timeout → LCD shows "Timeout"
-   * 🔒 5 wrong codes → Lockout for 30s
+   *  Correct code → Servo unlocks safe
+   *  Wrong code → LCD shows "Wrong Code"
+   *  Timeout → LCD shows "Timeout"
+   *  5 wrong codes → Lockout for 30s
 
 ---
 
@@ -194,7 +194,7 @@ git clone https://github.com/kesavsp04/lifi-login-system.git
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 We welcome contributions! 🚀
 
